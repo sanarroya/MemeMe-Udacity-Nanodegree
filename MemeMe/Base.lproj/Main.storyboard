@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Impact.ttf">
+            <string>Impact</string>
+            <string>Impact</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Me Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeMeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +23,96 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mii-OD-Ubs">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="wGL-v9-dhb">
+                                        <connections>
+                                            <action selector="shareMeme:" destination="BYZ-38-t0r" id="ejJ-AZ-8Id"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4d-Xz-ND7">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="eI5-0N-jbX"/>
+                                    <barButtonItem systemItem="camera" id="PgN-Qp-fgn">
+                                        <connections>
+                                            <action selector="takePhoto:" destination="BYZ-38-t0r" id="xfU-k7-mKi"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="85" style="plain" systemItem="fixedSpace" id="EAA-bV-C4v"/>
+                                    <barButtonItem title="Album" id="jz9-35-TdZ">
+                                        <connections>
+                                            <action selector="pickImageFromAlbum:" destination="BYZ-38-t0r" id="3t6-kX-yVz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sca-TL-gzt"/>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XjS-jS-hcf">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LMQ-Et-CiI">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP MEME ME" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3FK-I3-hR6">
+                                        <rect key="frame" x="8" y="12" width="584" height="49"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM MEME ME" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="1w7-Tm-J74">
+                                        <rect key="frame" x="8" y="435" width="584" height="49"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="LMQ-Et-CiI" firstAttribute="leading" secondItem="XjS-jS-hcf" secondAttribute="leading" id="50t-1M-yNW"/>
+                                    <constraint firstAttribute="bottom" secondItem="1w7-Tm-J74" secondAttribute="bottom" constant="8" id="E8y-ik-nVA"/>
+                                    <constraint firstItem="LMQ-Et-CiI" firstAttribute="top" secondItem="XjS-jS-hcf" secondAttribute="top" id="JTD-tG-3NU"/>
+                                    <constraint firstItem="3FK-I3-hR6" firstAttribute="leading" secondItem="XjS-jS-hcf" secondAttribute="leading" constant="8" id="KcK-88-eXK"/>
+                                    <constraint firstAttribute="trailing" secondItem="3FK-I3-hR6" secondAttribute="trailing" constant="8" id="ZhQ-5q-1hE"/>
+                                    <constraint firstAttribute="bottom" secondItem="LMQ-Et-CiI" secondAttribute="bottom" id="gzU-wq-PIq"/>
+                                    <constraint firstAttribute="trailing" secondItem="1w7-Tm-J74" secondAttribute="trailing" constant="8" id="ich-0K-dlW"/>
+                                    <constraint firstItem="1w7-Tm-J74" firstAttribute="leading" secondItem="XjS-jS-hcf" secondAttribute="leading" constant="8" id="jvh-Hm-5zR"/>
+                                    <constraint firstItem="3FK-I3-hR6" firstAttribute="top" secondItem="XjS-jS-hcf" secondAttribute="top" constant="12" id="muI-Ow-gf9"/>
+                                    <constraint firstAttribute="trailing" secondItem="LMQ-Et-CiI" secondAttribute="trailing" id="xq1-rk-LdC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="XjS-jS-hcf" secondAttribute="trailing" constant="-20" id="006-Kr-hGE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mii-OD-Ubs" secondAttribute="trailing" constant="-20" id="BOW-bY-G4G"/>
+                            <constraint firstItem="L4d-Xz-ND7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="J8D-n2-buf"/>
+                            <constraint firstItem="mii-OD-Ubs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="OIg-hn-Oph"/>
+                            <constraint firstItem="mii-OD-Ubs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="XYI-Fg-0wh"/>
+                            <constraint firstItem="XjS-jS-hcf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="dem-je-8BU"/>
+                            <constraint firstItem="XjS-jS-hcf" firstAttribute="top" secondItem="mii-OD-Ubs" secondAttribute="bottom" id="fjP-tp-PMj"/>
+                            <constraint firstItem="L4d-Xz-ND7" firstAttribute="top" secondItem="XjS-jS-hcf" secondAttribute="bottom" id="khq-A5-vBS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="L4d-Xz-ND7" secondAttribute="trailing" constant="-20" id="rKb-e9-ed5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="L4d-Xz-ND7" secondAttribute="bottom" id="xdJ-5e-gxX"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomTextField" destination="1w7-Tm-J74" id="sSn-JQ-3Ge"/>
+                        <outlet property="memeContainer" destination="XjS-jS-hcf" id="L1n-Xc-ens"/>
+                        <outlet property="memeImageView" destination="LMQ-Et-CiI" id="G4o-gh-Jon"/>
+                        <outlet property="shareButton" destination="wGL-v9-dhb" id="QEp-FR-ESG"/>
+                        <outlet property="takePhotoButton" destination="PgN-Qp-fgn" id="Ubd-r8-giw"/>
+                        <outlet property="topTextField" destination="3FK-I3-hR6" id="800-7V-6w4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="413" y="387"/>
         </scene>
     </scenes>
 </document>
