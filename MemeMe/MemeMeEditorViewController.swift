@@ -42,7 +42,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         if(UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)){
             album.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             album.mediaTypes = [kUTTypeImage as String]
-            self.presentViewController(album, animated: true, completion: nil)
+            presentViewController(album, animated: true, completion: nil)
         }
     }
     
@@ -74,7 +74,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func configureView() {
@@ -113,7 +113,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     
     func keyboardWillHide(notification: NSNotification) {
         if(bottomTextField.isFirstResponder()) {
-            view.frame.origin.y += getKeyboardHeight(notification) / 2
+            view.frame.origin.y = 0.0
 
         
         }
