@@ -60,13 +60,13 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP MEME ME" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3FK-I3-hR6">
-                                        <rect key="frame" x="8" y="12" width="584" height="49"/>
+                                        <rect key="frame" x="8" y="22" width="584" height="49"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM MEME ME" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="1w7-Tm-J74">
-                                        <rect key="frame" x="8" y="435" width="584" height="49"/>
+                                        <rect key="frame" x="8" y="422" width="584" height="49"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -75,14 +75,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="LMQ-Et-CiI" firstAttribute="leading" secondItem="XjS-jS-hcf" secondAttribute="leading" id="50t-1M-yNW"/>
-                                    <constraint firstAttribute="bottom" secondItem="1w7-Tm-J74" secondAttribute="bottom" constant="8" id="E8y-ik-nVA"/>
+                                    <constraint firstAttribute="bottom" secondItem="1w7-Tm-J74" secondAttribute="bottom" constant="21" id="E8y-ik-nVA"/>
                                     <constraint firstItem="LMQ-Et-CiI" firstAttribute="top" secondItem="XjS-jS-hcf" secondAttribute="top" id="JTD-tG-3NU"/>
                                     <constraint firstItem="3FK-I3-hR6" firstAttribute="leading" secondItem="XjS-jS-hcf" secondAttribute="leading" constant="8" id="KcK-88-eXK"/>
                                     <constraint firstAttribute="trailing" secondItem="3FK-I3-hR6" secondAttribute="trailing" constant="8" id="ZhQ-5q-1hE"/>
                                     <constraint firstAttribute="bottom" secondItem="LMQ-Et-CiI" secondAttribute="bottom" id="gzU-wq-PIq"/>
                                     <constraint firstAttribute="trailing" secondItem="1w7-Tm-J74" secondAttribute="trailing" constant="8" id="ich-0K-dlW"/>
                                     <constraint firstItem="1w7-Tm-J74" firstAttribute="leading" secondItem="XjS-jS-hcf" secondAttribute="leading" constant="8" id="jvh-Hm-5zR"/>
-                                    <constraint firstItem="3FK-I3-hR6" firstAttribute="top" secondItem="XjS-jS-hcf" secondAttribute="top" constant="12" id="muI-Ow-gf9"/>
+                                    <constraint firstItem="3FK-I3-hR6" firstAttribute="top" secondItem="XjS-jS-hcf" secondAttribute="top" constant="22" id="muI-Ow-gf9"/>
                                     <constraint firstAttribute="trailing" secondItem="LMQ-Et-CiI" secondAttribute="trailing" id="xq1-rk-LdC"/>
                                 </constraints>
                             </view>
