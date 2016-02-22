@@ -11,6 +11,11 @@ import UIKit
 
 class MemeMeAppearance {
     
+    /**
+     Sets the text attributes of the textfields
+     
+     - returns: Attributes to apply
+     */
     class func memeMeTextFieldTextAtribbutes() -> [String: AnyObject] {
         guard let buttonFont = UIFont(name: "Impact", size: 40) else {
             return ["": ""]

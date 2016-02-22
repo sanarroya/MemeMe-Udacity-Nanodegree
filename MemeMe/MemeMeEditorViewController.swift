@@ -15,11 +15,13 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var memeContainer: UIView!
     @IBOutlet weak var takePhotoButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var canceButton: UIBarButtonItem!
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
     var album: UIImagePickerController! = UIImagePickerController()
+    var isEditingMeme = false
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,7 +39,10 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func cancelMemeEdition(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func pickImageFromAlbum(sender: AnyObject) {
         if(UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)){
             album.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
@@ -57,7 +62,6 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         activityViewController.completionWithItemsHandler = { activity, success, items, error in
             if(success){
                 self.saveMeme(memedImage: memedImage)
-                print("guardo")
                 return
             }
         }
@@ -78,6 +82,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     func configureView() {
+        canceButton.enabled = isEditingMeme
         album.delegate = self
         takePhotoButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         shareButton.enabled = false
@@ -114,10 +119,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     func keyboardWillHide(notification: NSNotification) {
         if(bottomTextField.isFirstResponder()) {
             view.frame.origin.y = 0.0
-
-        
         }
-    
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
@@ -128,6 +130,10 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     
     func saveMeme(memedImage memedImage: UIImage) {
         let newMeme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.memes.append(newMeme)
+        let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBarController")
+        appDelegate.window?.rootViewController = tabBarController
     }
 }
 
