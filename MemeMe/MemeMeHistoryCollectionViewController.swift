@@ -23,7 +23,7 @@ class MemeMeHistoryCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+//        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -55,10 +55,9 @@ class MemeMeHistoryCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MemeMeCollectionViewCell
     
-        // Configure the cell
-    
+        cell.memeImageView.image = memes[indexPath.row].memedImage
         return cell
     }
 
@@ -68,6 +67,18 @@ class MemeMeHistoryCollectionViewController: UICollectionViewController {
             let cellWidth = (collectionView.frame.width / 4.0) - 2.0
             return CGSizeMake(cellWidth, cellWidth)
         
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        if(section == 0){
+            return 0.0
+        }else{
+            return 1.0
+        }
     }
 
 }
