@@ -12,6 +12,8 @@ import MobileCoreServices
 class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     
+    @IBOutlet weak var topToolbar: UIToolbar!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var memeContainer: UIView!
     @IBOutlet weak var takePhotoButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
@@ -22,6 +24,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     
     var album: UIImagePickerController! = UIImagePickerController()
     var isEditingMeme = false
+    var meme: Meme?
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -93,6 +96,13 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         bottomTextField.autocapitalizationType = .AllCharacters
         bottomTextField.delegate = self
         subscribeToKeyboardNotifications()
+        
+        if let meme = meme {
+//            topTextField.text = meme.topText
+//            bottomTextField.text = meme.bottomText
+            memeImageView.image = meme.originalImage
+//            view.sendSubviewToBack(memeContainer)
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -50,10 +50,13 @@ class MemeMeHistoryTableViewController: UITableViewController {
         return 110.0
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("DetailView", sender: indexPath.row)
+    }
+    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -67,14 +70,14 @@ class MemeMeHistoryTableViewController: UITableViewController {
         }    
     }
 
-    /*
+
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "DetailView") {
+            let editMemeViewController = segue.destinationViewController as! MemeDetailViewController
+            let index = sender as! Int
+            editMemeViewController.meme = memes[index]
+        }
     }
-    */
-
 }
