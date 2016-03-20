@@ -51,7 +51,10 @@ class MemeMeHistoryTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("DetailView", sender: indexPath.row)
+        let detailVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeMeDetailViewController") as! MemeMeDetailViewController
+        detailVC.meme = memes[indexPath.row]
+        detailVC.hidesBottomBarWhenPushed = true
+        navigationController!.pushViewController(detailVC, animated: true)
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -60,7 +63,6 @@ class MemeMeHistoryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
             tableView.beginUpdates()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
              (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(indexPath.row)
@@ -68,16 +70,5 @@ class MemeMeHistoryTableViewController: UITableViewController {
         } else if editingStyle == .Insert {
             
         }    
-    }
-
-
-    // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "DetailView") {
-            let editMemeViewController = segue.destinationViewController as! MemeDetailViewController
-            let index = sender as! Int
-            editMemeViewController.meme = memes[index]
-        }
     }
 }

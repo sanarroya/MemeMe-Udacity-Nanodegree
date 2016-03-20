@@ -25,6 +25,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     var album: UIImagePickerController! = UIImagePickerController()
     var isEditingMeme = false
     var meme: Meme?
+    var memeIndex: Int?
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -96,12 +97,12 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         bottomTextField.autocapitalizationType = .AllCharacters
         bottomTextField.delegate = self
         subscribeToKeyboardNotifications()
+        self.prefersStatusBarHidden()
         
         if let meme = meme {
-//            topTextField.text = meme.topText
-//            bottomTextField.text = meme.bottomText
+            topTextField.text = meme.topText
+            bottomTextField.text = meme.bottomText
             memeImageView.image = meme.originalImage
-//            view.sendSubviewToBack(memeContainer)
         }
     }
     
@@ -139,11 +140,27 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     private func saveMeme(memedImage memedImage: UIImage) {
-        let newMeme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.memes.append(newMeme)
+
+        if(isEditingMeme) {
+            
+            appDelegate.memes[memeIndex!].memedImage = memedImage
+            appDelegate.memes[memeIndex!].originalImage = memeImageView.image
+            appDelegate.memes[memeIndex!].topText = topTextField.text!
+            appDelegate.memes[memeIndex!].bottomText = bottomTextField.text!
+            
+        }else {
+            let newMeme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
+                        appDelegate.memes.append(newMeme)
+        }
+        
         let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TabBarController")
         appDelegate.window?.rootViewController = tabBarController
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }
 

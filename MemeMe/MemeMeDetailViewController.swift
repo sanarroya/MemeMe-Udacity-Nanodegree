@@ -8,13 +8,14 @@
 
 import UIKit
 
-class MemeDetailViewController: UIViewController {
+class MemeMeDetailViewController: UIViewController {
 
     @IBOutlet weak var originalImageMeme: UIImageView!
     @IBOutlet weak var topLabel: UITextField!
     @IBOutlet weak var bottomLabel: UITextField!
     
     var meme: Meme?
+    var memeIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,19 +35,22 @@ class MemeDetailViewController: UIViewController {
         bottomLabel.defaultTextAttributes = MemeMeAppearance.memeMeTextFieldTextAtribbutes()
         
         let editButton =  UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("editMeme:"))
-        print(self.navigationController?.navigationItem.debugDescription)
         self.navigationItem.rightBarButtonItem = editButton
     }
     
     func editMeme(sender: AnyObject) {
-        performSegueWithIdentifier("EditMeme", sender: nil)
+        let editVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeMeEditViewController") as! MemeMeEditorViewController
+        editVC.meme = meme
+        editVC.hidesBottomBarWhenPushed = true
+        presentViewController(editVC, animated: true, completion: nil)
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "EditMeme") {
             let editMemeViewController = segue.destinationViewController as! MemeMeEditorViewController
-            editMemeViewController.hidesBottomBarWhenPushed = false
             editMemeViewController.meme = meme
+            editMemeViewController.isEditingMeme = true
         }
     }
 }

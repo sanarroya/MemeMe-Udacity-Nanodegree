@@ -57,12 +57,9 @@ class MemeMeHistoryCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("MEME DETAIL", sender: nil)
-    }
-    
-    
-    // MARK: - Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let detailVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeMeDetailViewController") as! MemeMeDetailViewController
+        detailVC.meme = memes[indexPath.row]
+        detailVC.hidesBottomBarWhenPushed = true
+        navigationController!.pushViewController(detailVC, animated: true)
     }
 }
