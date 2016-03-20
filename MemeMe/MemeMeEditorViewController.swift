@@ -81,7 +81,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func configureView() {
+    private func configureView() {
         canceButton.enabled = isEditingMeme
         album.delegate = self
         takePhotoButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
@@ -124,11 +124,11 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
     }
     
-    func saveMeme(memedImage memedImage: UIImage) {
+    private func saveMeme(memedImage memedImage: UIImage) {
         let newMeme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.memes.append(newMeme)
