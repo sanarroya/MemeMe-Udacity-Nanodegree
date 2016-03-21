@@ -140,11 +140,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TS0-3C-mEj">
-                                <rect key="frame" x="0.0" y="20" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fKK-We-CeH">
-                                <rect key="frame" x="5" y="103" width="590" height="49"/>
+                                <rect key="frame" x="5" y="28" width="590" height="49"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -158,9 +158,9 @@
                         <constraints>
                             <constraint firstItem="fKK-We-CeH" firstAttribute="trailing" secondItem="bBj-49-ZHY" secondAttribute="trailing" id="9ZE-qd-vTM"/>
                             <constraint firstItem="TS0-3C-mEj" firstAttribute="bottom" secondItem="zeK-Wl-rTo" secondAttribute="top" id="EZq-8p-pCx"/>
-                            <constraint firstItem="fKK-We-CeH" firstAttribute="top" secondItem="c7R-VK-bDc" secondAttribute="bottom" constant="83" id="H5e-om-ROY"/>
+                            <constraint firstItem="fKK-We-CeH" firstAttribute="top" secondItem="c7R-VK-bDc" secondAttribute="bottom" constant="8" id="H5e-om-ROY"/>
                             <constraint firstItem="fKK-We-CeH" firstAttribute="leading" secondItem="FTs-J3-mSN" secondAttribute="leadingMargin" constant="-15" id="ISH-EM-HBH"/>
-                            <constraint firstItem="TS0-3C-mEj" firstAttribute="top" secondItem="c7R-VK-bDc" secondAttribute="bottom" id="TzV-d6-rrg"/>
+                            <constraint firstItem="TS0-3C-mEj" firstAttribute="top" secondItem="c7R-VK-bDc" secondAttribute="bottom" constant="-20" id="TzV-d6-rrg"/>
                             <constraint firstItem="fKK-We-CeH" firstAttribute="centerX" secondItem="TS0-3C-mEj" secondAttribute="centerX" id="WIR-NA-6QE"/>
                             <constraint firstItem="fKK-We-CeH" firstAttribute="leading" secondItem="bBj-49-ZHY" secondAttribute="leading" id="Zfd-X1-nHw"/>
                             <constraint firstItem="zeK-Wl-rTo" firstAttribute="top" secondItem="bBj-49-ZHY" secondAttribute="bottom" constant="35" id="hxV-33-Z7H"/>
