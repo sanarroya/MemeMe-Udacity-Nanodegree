@@ -38,15 +38,20 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         unsubscribeFromKeyboardNotifications()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    /**
+     Ends the edition or creation of a meme
+     
+     - parameter sender: Button that triggers the action
+     */
     @IBAction func cancelMemeEdition(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /**
+     Presents the gallery to the user, allowing the user to choose an image
+     
+     - parameter sender: Button that triggers the action
+     */
     @IBAction func pickImageFromAlbum(sender: AnyObject) {
         if(UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)){
             album.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
@@ -55,11 +60,21 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         }
     }
     
+    /**
+     Presents the camera to the user
+     
+     - parameter sender: Button that triggers the action
+     */
     @IBAction func takePhoto(sender: AnyObject) {
         album.sourceType = UIImagePickerControllerSourceType.Camera
         presentViewController(album, animated: true, completion: nil)
     }
     
+    /**
+     Presents the user an activity view controller so he can share the meme
+     
+     - parameter sender: Button that triggers the action
+     */
     @IBAction func shareMeme(sender: AnyObject) {
         let memedImage = ImageGeneration.generateMemedImage(containerView: memeContainer)
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
@@ -72,6 +87,13 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         presentViewController(activityViewController, animated: true, completion: nil)
     }
     
+    /**
+     Sets the image selected by the user from the gallery or a photo taken to be edited
+     
+     - parameter picker:      Picker controller
+     - parameter image:       Image chosen or photo taken
+     - parameter editingInfo: Editinf info
+     */
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         if(picker.sourceType == .PhotoLibrary || picker.sourceType == .Camera){
             memeImageView.image = image
@@ -81,12 +103,19 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         })
     }
     
+    /**
+     Gets call when the user cancels the selection of an image or closes the camera when taking a photo
+     
+     - parameter picker: Picker Controller
+     */
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /**
+     Initial configuration of the view, set available types to the image picker controller, sets the default attributes of the textfields, subscribes the viewcontroller to keyboard notifications, hide the status bar and if the user is editing a meme sets the image, top and bottom texts to be edited
+     */
     private func configureView() {
-        canceButton.enabled = isEditingMeme
         album.delegate = self
         takePhotoButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         shareButton.enabled = false
@@ -103,9 +132,11 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
             topTextField.text = meme.topText
             bottomTextField.text = meme.bottomText
             memeImageView.image = meme.originalImage
+            memeImageView.contentMode = .ScaleAspectFit
         }
     }
     
+    // MARK: Keyboard behaviour
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -128,9 +159,7 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if(bottomTextField.isFirstResponder()) {
-            view.frame.origin.y = 0.0
-        }
+        view.frame.origin.y = 0.0
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
@@ -139,6 +168,11 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         return keyboardSize.CGRectValue().height
     }
     
+    /**
+     Saves or updates the meme into an array in the AppDelegate
+     
+     - parameter memedImage: meme image to save
+     */
     private func saveMeme(memedImage memedImage: UIImage) {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

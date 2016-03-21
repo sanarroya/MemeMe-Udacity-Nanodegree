@@ -21,12 +21,10 @@ class MemeMeDetailViewController: UIViewController {
         super.viewDidLoad()
         configureView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    /**
+     Initial configuration of the View, sets the the text attributes of the test fields and adds a right button to the navigation bar
+     */
     private func configureView() {
         originalImageMeme.image = meme?.originalImage
         topLabel.text = meme?.topText
@@ -38,19 +36,17 @@ class MemeMeDetailViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = editButton
     }
     
+    
+    /**
+     Takes the user to the meme edition
+     
+     - parameter sender: Button that trigger the action
+     */
     func editMeme(sender: AnyObject) {
         let editVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeMeEditViewController") as! MemeMeEditorViewController
         editVC.meme = meme
         editVC.hidesBottomBarWhenPushed = true
         presentViewController(editVC, animated: true, completion: nil)
 
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "EditMeme") {
-            let editMemeViewController = segue.destinationViewController as! MemeMeEditorViewController
-            editMemeViewController.meme = meme
-            editMemeViewController.isEditingMeme = true
-        }
     }
 }
