@@ -26,11 +26,26 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
     var isEditingMeme = false
     var meme: Meme?
     var memeIndex: Int?
+    var memeLoaded = false
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         configureView()
         automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let meme = meme {
+            if(!memeLoaded) {
+                topTextField.text = meme.topText
+                bottomTextField.text = meme.bottomText
+                memeImageView.image = meme.originalImage
+                memeImageView.contentMode = .ScaleAspectFit
+                shareButton.enabled = true
+                memeLoaded = true
+            }
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -127,13 +142,6 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         bottomTextField.delegate = self
         subscribeToKeyboardNotifications()
         self.prefersStatusBarHidden()
-        
-        if let meme = meme {
-            topTextField.text = meme.topText
-            bottomTextField.text = meme.bottomText
-            memeImageView.image = meme.originalImage
-            memeImageView.contentMode = .ScaleAspectFit
-        }
     }
     
     // MARK: Keyboard behaviour
@@ -178,7 +186,6 @@ class MemeMeEditorViewController: UIViewController, UIImagePickerControllerDeleg
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         if(isEditingMeme) {
-            
             appDelegate.memes[memeIndex!].memedImage = memedImage
             appDelegate.memes[memeIndex!].originalImage = memeImageView.image
             appDelegate.memes[memeIndex!].topText = topTextField.text!

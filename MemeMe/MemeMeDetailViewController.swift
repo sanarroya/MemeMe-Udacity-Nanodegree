@@ -45,6 +45,8 @@ class MemeMeDetailViewController: UIViewController {
     func editMeme(sender: AnyObject) {
         let editVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeMeEditViewController") as! MemeMeEditorViewController
         editVC.meme = meme
+        editVC.memeIndex = memeIndex
+        editVC.isEditingMeme = true
         editVC.hidesBottomBarWhenPushed = true
         presentViewController(editVC, animated: true, completion: nil)
 

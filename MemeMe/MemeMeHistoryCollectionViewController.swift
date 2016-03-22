@@ -55,6 +55,7 @@ class MemeMeHistoryCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeMeDetailViewController") as! MemeMeDetailViewController
         detailVC.meme = memes[indexPath.row]
+        detailVC.memeIndex = indexPath.row
         detailVC.hidesBottomBarWhenPushed = true
         navigationController!.pushViewController(detailVC, animated: true)
     }
